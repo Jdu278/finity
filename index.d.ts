@@ -58,7 +58,7 @@ export interface AsyncConfigurator<S, E> extends BaseConfigurator<S, E> {
   onFailure(): TriggerConfigurator<S, E>;
 }
 
-export type TransitionAction<S, E> = (fromState: S, toState: S, context: Context<S, E>) => void | Promise<void>;
+export type TransitionAction<S, E> = (fromState: S, toState: S, context: Context<S, E>) => any | Promise<any>;
 export type Condition<S, E> = (context: Context<S, E>) => boolean | Promise<boolean>;
 
 export interface TransitionConfigurator<S, E>
