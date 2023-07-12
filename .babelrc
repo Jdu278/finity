@@ -1,12 +1,13 @@
 {
   "presets": [
-    ["env", {
+    ["@babel/preset-env", {
       "targets": {
-        "node": "8.0",
+        "node": "18.0",
         "browsers": "Chrome >= 62, Firefox >= 59, Edge >= 16, iOS >= 10.3, Safari >= 10.1"
       },
       "loose": true,
-      "useBuiltIns": true,
+      "useBuiltIns": "usage",
+      "corejs": 3,
       "debug": true
     }]
   ],
