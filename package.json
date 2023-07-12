@@ -27,7 +27,7 @@
     "umd",
     "index.d.ts"
   ],
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "types": "index.d.ts",
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -42,7 +42,6 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
-    "gzip-size-cli": "^2.1.0",
     "jasmine": "^3.1.0",
     "jasmine-spec-reporter": "^4.2.1",
     "nyc": "^12.0.2",
@@ -54,11 +53,11 @@
     "webpack-cli": "^2.1.5"
   },
   "scripts": {
-    "clean": "rimraf lib && rimraf umd && rimraf coverage",
-    "build:commonjs": "babel src --out-dir lib && shx cp src/index.commonjs.js lib/index.js",
-    "build:umd": "webpack src/index.commonjs.js -o umd/Finity.js --mode development",
-    "build:umd:min": "webpack src/index.commonjs.js -o umd/Finity.min.js --mode production",
-    "build": "npm run clean && npm run build:commonjs && npm run build:umd && npm run build:umd:min && gzip-size umd/Finity.min.js",
+    "clean": "rimraf dist && rimraf coverage",
+    "build:commonjs": "babel src --out-dir dist && shx cp src/index.commonjs.js dist/index.js",
+    "build:umd": "webpack src/index.commonjs.js -o dist/Finity.js --mode development",
+    "build:umd:min": "webpack src/index.commonjs.js -o dist/Finity.min.js --mode production",
+    "build": "npm run clean && npm run build:commonjs && npm run build:umd && npm run build:umd:min",
     "prepare": "npm run build",
     "test:typings": "tsc",
     "test": "node -r source-map-support/register test/support/jasmineRunner.js && npm run test:typings",
