@@ -65,4 +65,5 @@
     "coverage": "nyc --cache false --produce-source-map --reporter lcovonly --reporter text node -r source-map-support/register test/support/jasmineRunner.js && rimraf .nyc_output",
     "lint": "eslint src test examples"
   }
+
 }
