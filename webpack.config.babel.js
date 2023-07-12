@@ -5,7 +5,7 @@ export default {
     path: path.resolve(__dirname, 'dist'),
     library: 'Finity',
     libraryTarget: 'umd',
-    filename: 'Finity.js'
+    filename: 'Finity.js',
   },
 
   module: {
