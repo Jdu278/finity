@@ -12,8 +12,8 @@ export default class HandlerMocks {
   constructor() {
     this.calledHandlers = [];
     handlerNames.forEach(name => {
-      this[name] = jasmine.createSpy(name).and.callFake((...args) =>
-        this.calledHandlers.push([name, ...args])
+      // eslint-disable-next-line max-len
+      this[name] = jasmine.createSpy(name).and.callFake((...args) => this.calledHandlers.push([name, ...args])
       );
     });
   }

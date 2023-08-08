@@ -28,8 +28,7 @@ describe('transition', () => {
     it('executes actions and global hooks in the correct order with the correct parameters', async () => {
       const mocks = new HandlerMocks();
 
-      const withGlobalHooks = configurator =>
-        configurator
+      const withGlobalHooks = configurator => configurator
           .global()
             .onStateEnter(mocks.stateEnterHook)
             .onStateExit(mocks.stateExitHook)

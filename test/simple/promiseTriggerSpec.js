@@ -1,3 +1,4 @@
+import { setTimeout } from 'node:timers/promises';
 import Finity from '../../src';
 
 describe('promise trigger', () => {
@@ -13,7 +14,7 @@ describe('promise trigger', () => {
         .start();
 
       await resolvedPromise;
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await setTimeout(50);
 
       expect(stateMachine.getCurrentState()).toBe('state2');
     });
@@ -29,13 +30,13 @@ describe('promise trigger', () => {
         .start();
 
       await rejectedPromise.then(null, () => {});
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await setTimeout(50);
 
       expect(stateMachine.getCurrentState()).toBe('state3');
     });
 
     it('executes no transition when the state has been exited', async () => {
-      const resolvedPromise = new Promise(resolve => setTimeout(resolve, 50));
+      const resolvedPromise = setTimeout(50);
 
       const stateMachine = await Finity
         .configure()
@@ -63,7 +64,7 @@ describe('promise trigger', () => {
         .start();
 
       await resolvedPromise;
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await setTimeout(50);
 
       expect(action).toHaveBeenCalledWith(
         'state1', 'state2', { stateMachine, result: 'result' }
@@ -83,7 +84,7 @@ describe('promise trigger', () => {
         .start();
 
       await rejectedPromise.then(null, () => {});
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await setTimeout(50);
 
       expect(action).toHaveBeenCalledWith(
         'state1', 'state2', { stateMachine, error }
@@ -98,7 +99,7 @@ describe('promise trigger', () => {
           .do(asyncOperation).onSuccess().transitionTo('state2')
         .start();
 
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await setTimeout(50);
 
       expect(asyncOperation).toHaveBeenCalledWith('state1', { stateMachine });
     });
@@ -120,7 +121,7 @@ describe('promise trigger', () => {
       await stateMachine.handle('event1');
 
       await resolvedPromise;
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await setTimeout(50);
 
       expect(stateMachine.getCurrentState()).toBe('state3');
     });
@@ -140,7 +141,7 @@ describe('promise trigger', () => {
       await stateMachine.handle('event1');
 
       await rejectedPromise.then(null, () => {});
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await setTimeout(50);
 
       expect(stateMachine.getCurrentState()).toBe('state4');
     });
@@ -157,7 +158,7 @@ describe('promise trigger', () => {
 
       await stateMachine.handle('event1', 'payload1');
 
-      await new Promise(resolve => setTimeout(resolve, 50));
+      await setTimeout(50);
 
       expect(asyncOperation).toHaveBeenCalledWith('state2', {
         stateMachine,

@@ -3,11 +3,12 @@ import BaseConfigurator from './BaseConfigurator';
 export default class TransitionConfigurator extends BaseConfigurator {
   constructor(parent, targetState, options = {}) {
     super(parent);
-    this.config = Object.assign({}, options, {
+    this.config = {
+      ...options,
       targetState,
       actions: [],
       condition: null,
-    });
+    };
   }
 
   withAction(action) {

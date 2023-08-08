@@ -1,3 +1,4 @@
+import { setTimeout } from 'node:timers/promises';
 import Finity from '../../src';
 
 describe('time trigger', () => {
@@ -10,7 +11,7 @@ describe('time trigger', () => {
 
       expect(stateMachine.getCurrentState()).toBe('state1');
 
-      await new Promise(resolve => setTimeout(resolve, 150));
+      await setTimeout(150);
 
       expect(stateMachine.getCurrentState()).toBe('state2');
     });
@@ -25,7 +26,7 @@ describe('time trigger', () => {
 
       await stateMachine.handle('event1');
 
-      await new Promise(resolve => setTimeout(resolve, 150));
+      await setTimeout(150);
 
       expect(stateMachine.getCurrentState()).toBe('state2');
     });
@@ -43,7 +44,7 @@ describe('time trigger', () => {
 
       expect(stateMachine.getCurrentState()).toBe('state2');
 
-      await new Promise(resolve => setTimeout(resolve, 150));
+      await setTimeout(150);
 
       expect(stateMachine.getCurrentState()).toBe('state3');
     });

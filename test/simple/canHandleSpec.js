@@ -64,7 +64,6 @@ describe('canHandle', () => {
       });
     });
 
-
     describe('when the guard condition of one of the transitions is true', () => {
       it('returns true', async () => {
         const stateMachine = await Finity

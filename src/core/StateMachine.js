@@ -91,9 +91,9 @@ export default class StateMachine {
       await this.exitState(context);
     }
 
-    const nextState = transitionConfig.targetState !== null ?
-      transitionConfig.targetState :
-      this.currentState;
+    const nextState = transitionConfig.targetState !== null
+      ? transitionConfig.targetState
+      : this.currentState;
 
     await invokeEach(this.config.global.transitionHooks, this.currentState, nextState, context);
     const actionRetvals = await invokeEach(

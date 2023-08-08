@@ -1,3 +1,4 @@
+import { setTimeout } from 'node:timers/promises';
 import Finity from '../../src';
 import HandlerMocks from '../support/HandlerMocks';
 
@@ -60,7 +61,7 @@ describe('handle', () => {
           .initialState('state1')
             .on('event1')
               .transitionTo('state2').withAction(async (from, to, context) => {
-                await new Promise(resolve => setTimeout(resolve, 50));
+                await setTimeout(50);
                 stateDuringTransition = context.stateMachine.getCurrentState();
               })
           .start();
@@ -77,7 +78,7 @@ describe('handle', () => {
           .initialState('state1')
             .on('event1')
               .transitionTo('state2').withAction(async () => {
-                await new Promise(resolve => setTimeout(resolve, 50));
+                await setTimeout(50);
                 return 'action1';
               })
           .start();

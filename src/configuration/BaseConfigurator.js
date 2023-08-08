@@ -7,9 +7,9 @@ export default class BaseConfigurator {
 
   getAncestor(type) {
     if (this.parent) {
-      return this.parent instanceof type ?
-        this.parent :
-        this.parent.getAncestor(type);
+      return this.parent instanceof type
+        ? this.parent
+        : this.parent.getAncestor(type);
     }
     return null;
   }

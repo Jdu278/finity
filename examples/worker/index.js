@@ -1,9 +1,11 @@
+import { setTimeout } from 'node:timers/promises';
+
 const Finity = require('finity');
 
-function processTaskAsync(taskParams) {
+async function processTaskAsync(taskParams) {
   console.log('Processing task:', taskParams);
   // Simulate an async operation
-  return new Promise(resolve => setTimeout(resolve, 100));
+  await setTimeout(100);
 }
 
 const worker = Finity
